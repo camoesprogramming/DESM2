@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+1.0 Enunciado
+Construa, utilizando o React, uma aplicação para informar os resultados de
+eleições em 5 municípios.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+2.0 Atividades
+Os alunos deverão desempenhar as seguintes atividades:
+• Implementar, utilizando o React, uma aplicação denominada "reactelections", que mostrará o resultado de eleições em 5 municípios. Os
+dados sobre as eleições serão fornecidos pelo professor no Fórum de
+Avisos do Módulo.
 
-## Available Scripts
+3.0 Considerações importantes:
+• Imagens – será fornecida, no Fórum de Avisos do Professor, uma pasta
+img com imagens dos candidatos. Esta pasta deve estar localizada dentro
+da pasta public do projeto de Front End e a url do componente de imagem
+deve ser acessada como "/img/superman.png", por exemplo.
+• Estruturas de dados – será fornecido, no Fórum de Avisos do Professor,
+um Back End fake com json-server, que irá monitorar o arquivo
+elections.json, que contém:
+− Um array denominado cities, que contém dados sobre os 5
+municípios e informações sobre total de eleitores 3
+(votingPopulation), abstenções (quem não votou – absence) e
+presenças (diferença entre eleitores e abstenções – presence).
+− Um array denominado candidates, que contém dados sobre os
+candidatos. O campo username pode ser utilizado para localizar a
+imagem correspondente do candidato. Observação: para simplificar o
+processo de geração dos dados de forma aleatória, considere que um
+mesmo candidato pode participar da eleição de mais de um município.
+− Um array denominado election, que contém o vínculo entre município
+e candidato e informações sobre a votação. Este é o maior array e, na
+prática, deve ser filtrado e ordenado (mair votação >>> menor
+votação) para refletir determinada eleição em determinado município.
+− O Back End on-line dará acesso às seguintes rotas/urls, que
+"devolvem" os dados conforme as descrições dos tópicos acima:
+− Há basicamente duas estratégias para a busca dos dados:
+1ª. Você pode buscar todo o back-end e trabalhar com todos
+os dados em memória.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+2ª. Você pode buscar por cities e candidates, mantendo-os
+em memória. A partir da cidade selecionada pelo usuário,
+você traz os dados referentes às eleições daquele
+município com a seguinte url:
+http://localhost:3001/election?cityId=d2dab6a2-3029-
+45a5-89f2-fcbaee387758 (neste exemplo, trago o
+resultado da votação de "Smallville", considerando os
+dados gerados no momento da criação deste
+documento, ou seja, o id (d2dab6a2-3029-45a5-89f2-
+fcbaee387758) pode possuir um outro valor em outras
+ofertas deste Desafio.
