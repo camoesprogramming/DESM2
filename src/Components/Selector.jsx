@@ -2,7 +2,7 @@ import axios from "axios"
 import styled from "styled-components"
 import { useEffect, useState } from "react"
 
-export default function Selector({selectedCity, setSelectedCity}) {
+export default function Selector({selectedCity, setSelectedCity, arrayOfCities = []}) {
   
   const URL = "http://localhost:3001/cities"
   
@@ -11,17 +11,7 @@ export default function Selector({selectedCity, setSelectedCity}) {
     setSelectedCity(option)
   }
 
-  const [arrayOfCities, setArrayOfCities] = useState([])
-
-  useEffect(() => {
-    const promise = axios.get(URL);
-    let shallowCopy = []
-    promise.then(obj => setArrayOfCities(obj.data))
-
-   
-    
-  }, [])
-  console.log(arrayOfCities)
+  
 
   return (
     <SelectorDiv>
