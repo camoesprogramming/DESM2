@@ -1,24 +1,18 @@
-import axios from "axios"
 import styled from "styled-components"
-import { useEffect, useState } from "react"
 
-export default function Selector({selectedCity, setSelectedCity, arrayOfCities = []}) {
-  
-  const URL = "http://localhost:3001/cities"
+export default function Selector({selectedCity, setSelectedCity, arrayOfCities}) {
   
   const handleSelectedValue = (event) => {
     const option = event.target.value;
     setSelectedCity(option)
   }
 
-  
-
   return (
     <SelectorDiv>
       <select name="cities" id="cities" onChange={handleSelectedValue} value={selectedCity}>
         
         {arrayOfCities.map(e => (
-          <option value={e.name}>{e.name}</option>
+          <option value={e.name} key={e.id}>{e.name}</option>
         ))}
       
       </select>
