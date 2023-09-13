@@ -1,17 +1,35 @@
 import styled from "styled-components"
+import CandidateCard from "./CandidateCard"
+import { useEffect, useState } from "react";
 
 export default function ElectionContainer({ selectedCity, arrayOfCandidates, arrayOfCities, arrayOfElections }) {
 
-  let selectedCityObj = arrayOfCities.find(e => e.name === selectedCity)
-
-  const numberOfCandidates = arrayOfElections.filter(e => e.cityId === selectedCityObj.id)
-
+  const [selectedCityObj, setSelectedCityObj] = useState([])
+  const [candidatesOfThisElection, setCandidatesOfThisElection] = useState([])
   
+
+  useEffect(() => {
+    const chosenCity = arrayOfCities.find(e => e.name === selectedCity);
+
+    if (chosenCity) {
+      setSelectedCityObj(chosenCity);
+    }
+  }, [arrayOfCities, selectedCity])
+
+  useEffect(() => {
+    const candidates = arrayOfElections.filter(e => e.cityId === selectedCityObj.id);
+
+    if (candidates) {
+      setCandidatesOfThisElection(candidates);
+    }
+  }, [selectedCityObj, arrayOfElections, selectedCity])
+
+
 
   return (
     <Container>
       {
-        arrayOfCandidates.length === 0 ? "" : (
+        (arrayOfCandidates.length === 0 && arrayOfCities.length === 0 && arrayOfElections.length === 0) ? "Carregando dados..." : (
           <>
             <h1>Eleição em {selectedCityObj.name}</h1>
             <div>
@@ -19,10 +37,31 @@ export default function ElectionContainer({ selectedCity, arrayOfCandidates, arr
               <p><span>Abstenção:</span> {selectedCityObj.votingPopulation - selectedCityObj.presence}</p>
               <p><span>Comparecimento:</span> {selectedCityObj.presence}</p>
             </div>
-            <p>{numberOfCandidates.length} candidatos</p>
+            <p>{candidatesOfThisElection.length} candidatos</p>
+
+            <CardsContainer>
+              {candidatesOfThisElection.map(element => {
+                return (
+                  <CandidateCard
+                    key={element.id}
+                    candidateID={element.candidateId}
+                    selectedCityObj={selectedCityObj}
+                    candidatesOfThisElection={candidatesOfThisElection}
+                    arrayOfCandidates = {arrayOfCandidates}
+                  />
+                )
+              })}
+             
+
+
+              
+
+            </CardsContainer>
           </>
         )
       }
+
+
     </Container>
   )
 }
@@ -55,4 +94,11 @@ const Container = styled.div`
     font-weight: bold;
   }
 
+`
+
+const CardsContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
 `
